@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Servicios Académicos - UNAL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 1.2rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #8B1538;
+            font-size: 1.2rem;
+        }
+
+        .header-title {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-title h1 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .header-title p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 0.2rem;
+        }
+
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .user-section:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .user-icon {
+            width: 35px;
+            height: 35px;
+            background: #8B1538;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .menu-item {
+            padding: 1rem 1.2rem;
+            margin: 0.5rem 0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .menu-item:hover {
+            background: linear-gradient(135deg, #8B1538 0%, #a71d45 100%);
+            color: white;
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(139,21,56,0.3);
+        }
+
+        .menu-item.active {
+            background: linear-gradient(135deg, #8B1538 0%, #a71d45 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(139,21,56,0.3);
+        }
+
+        .menu-icon {
+            font-size: 1.2rem;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #8B1538 0%, #a71d45 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .hero-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-section p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #f0f0f0;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(139,21,56,0.15);
+            border-color: #8B1538;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8B1538 0%, #a71d45 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+            color: white;
+        }
+
+        .card h3 {
+            color: #1a1a1a;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #8B1538;
+            display: inline-block;
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .quick-btn {
+            padding: 0.9rem 1.8rem;
+            background: white;
+            border: 2px solid #8B1538;
+            color: #8B1538;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .quick-btn:hover {
+            background: linear-gradient(135deg, #8B1538 0%, #a71d45 100%);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139,21,56,0.3);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 968px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: relative;
+                top: 0;
+            }
+
+            .hero-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">UN</div>
+                <div class="header-title">
+                    <h1>UNIVERSIDAD NACIONAL DE COLOMBIA</h1>
+                    <p>Portal de Servicios Académicos</p>
+                </div>
+            </div>
+            <div class="user-section">
+                <div class="user-icon">JM</div>
+                <span>jmorenomar</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="menu-item active">
+                <span class="menu-icon">👤</span>
+                <span>Datos personales</span>
+            </div>
+            <div class="menu-item">
+                <span class="menu-icon">📚</span>
+                <span>Información académica</span>
+            </div>
+            <div class="menu-item">
+                <span class="menu-icon">📝</span>
+                <span>Proceso de inscripción</span>
+            </div>
+            <div class="menu-item">
+                <span class="menu-icon">🔍</span>
+                <span>Buscador de cursos</span>
+            </div>
+            <div class="menu-item">
+                <span class="menu-icon">📖</span>
+                <span>Catálogo prog. curriculares</span>
+            </div>
+            <div class="menu-item">
+                <span class="menu-icon">💰</span>
+                <span>Información Financiera</span>
+            </div>
+            <div class="menu-item">
+                <span class="menu-icon">📄</span>
+                <span>Trámites y solicitudes</span>
+            </div>
+            <div class="menu-item">
+                <span class="menu-icon">⭐</span>
+                <span>Evaluación docente</span>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="hero-section">
+                <h2>Portal de Servicios Académicos</h2>
+                <p>Proyecto Cultural y Colectivo de Nación</p>
+            </div>
+
+            <h2 class="section-title">Accesos Rápidos</h2>
+            
+            <div class="quick-actions">
+                <button class="quick-btn">📋 Mis Datos Personales</button>
+                <button class="quick-btn">📊 Historial Académico</button>
+                <button class="quick-btn">📅 Calendario Académico</button>
+                <button class="quick-btn">💳 Estado Financiero</button>
+            </div>
+
+            <h2 class="section-title">Servicios Destacados</h2>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">📚</div>
+                    <h3>Información Académica</h3>
+                    <p>Consulta tu historial, notas, horarios y toda la información relacionada con tu proceso académico.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📝</div>
+                    <h3>Inscripción de Asignaturas</h3>
+                    <p>Realiza la inscripción de tus materias para el próximo periodo académico de manera rápida y sencilla.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🔍</div>
+                    <h3>Buscador de Cursos</h3>
+                    <p>Explora la oferta académica disponible y encuentra los cursos que se ajustan a tu plan de estudios.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">💰</div>
+                    <h3>Información Financiera</h3>
+                    <p>Revisa tu estado de cuenta, realiza pagos y gestiona tus obligaciones financieras con la universidad.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📄</div>
+                    <h3>Trámites y Solicitudes</h3>
+                    <p>Solicita certificados, carnés, homologaciones y otros trámites académicos de forma digital.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">⭐</div>
+                    <h3>Evaluación Docente</h3>
+                    <p>Evalúa el desempeño de tus profesores y contribuye a mejorar la calidad educativa.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>Universidad Nacional de Colombia - Dirección Nacional de Información Académica</p>
+        <p>Portal de Servicios Académicos (V. 5.0) | Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        const menuItems = document.querySelectorAll('.menu-item');
+        menuItems.forEach(item => {
+            item.addEventListener('click', function() {
+                menuItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>
