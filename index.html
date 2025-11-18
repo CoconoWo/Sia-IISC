@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal de Servicios Académicos - UNAL</title>
     <link rel="icon" href="Logo.svg">
-    
     <style>
         * {
             margin: 0;
@@ -293,17 +292,144 @@
         }
 
         @media (max-width: 968px) {
+            .header {
+                padding: 1rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .logo-section {
+                width: 100%;
+            }
+
+            .header-title h1 {
+                font-size: 0.9rem;
+            }
+
+            .header-title p {
+                font-size: 0.75rem;
+            }
+
+            .user-section {
+                align-self: flex-end;
+                padding: 0.5rem 1rem;
+            }
+
             .container {
                 grid-template-columns: 1fr;
+                padding: 1rem;
+                gap: 1rem;
             }
             
             .sidebar {
                 position: relative;
                 top: 0;
+                padding: 1rem;
+                border-radius: 15px;
+            }
+
+            .menu-item {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .menu-icon {
+                font-size: 1rem;
+            }
+
+            .main-content {
+                padding: 1.5rem;
+                border-radius: 15px;
+            }
+
+            .hero-section {
+                padding: 2rem 1.5rem;
+                border-radius: 12px;
             }
 
             .hero-section h2 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
+            }
+
+            .hero-section p {
+                font-size: 0.95rem;
+            }
+
+            .hero-section::before {
+                width: 250px;
+                height: 250px;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .quick-actions {
+                gap: 0.8rem;
+            }
+
+            .quick-btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.85rem;
+                width: 100%;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .card-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .card h3 {
+                font-size: 1.1rem;
+            }
+
+            .card p {
+                font-size: 0.9rem;
+            }
+
+            .footer {
+                padding: 1.5rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .user-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 0.85rem;
+            }
+
+            .hero-section {
+                padding: 1.5rem 1rem;
+            }
+
+            .hero-section h2 {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
             }
         }
     </style>
